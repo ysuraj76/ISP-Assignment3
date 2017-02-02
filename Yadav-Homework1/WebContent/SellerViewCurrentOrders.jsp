@@ -9,18 +9,12 @@
 <body>
 
 
-<form action=login.jsp method=post	>
+ <a href="Login.jsp">LogOut</a> <br>
+ <a href="SellerHomepage.jsp">Home</a> <br>
+ <a href="SellerManageProducts.jsp">Manage Products</a> <br>
 
-<input type=submit value=Log-Out> <br> 
-
-</form>
-<form action=SellerHomePage.jsp method=post	>
-
-<input type=submit value=Homepage> <br> 
-
-<a href="SellerManageProducts.jsp">Manage Products</a> <br>
-
-
+<form action=ServSellerView method=post	>
+<input type=submit value=View> 
 </form>
 
 </body>

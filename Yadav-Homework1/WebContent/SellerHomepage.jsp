@@ -8,12 +8,10 @@
 </head>
 <body>
 <h1>Welcome Seller</h1>
-<form action=login.jsp method=post	>
 
-<input type=submit value=Log-Out> <br> 
 
 </form>
-
+<a href="Login.jsp">LogOut</a> <br>
 <a href="SellerViewCurrentOrders.jsp">View Current Orders</a> <br>
 <a href="SellerManageProducts.jsp">Manage Orders</a> <br>
 
