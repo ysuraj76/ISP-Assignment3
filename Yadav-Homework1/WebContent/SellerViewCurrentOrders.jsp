@@ -8,14 +8,14 @@
 </head>
 <body>
 
+<form action=ServSellerView method=post	>
+<input type=submit value=View> <br> 
+</form>
 
  <a href="Login.jsp">LogOut</a> <br>
  <a href="SellerHomepage.jsp">Home</a> <br>
  <a href="SellerManageProducts.jsp">Manage Products</a> <br>
 
-<form action=ServSellerView method=post	>
-<input type=submit value=View> 
-</form>
 
 </body>
 </html>

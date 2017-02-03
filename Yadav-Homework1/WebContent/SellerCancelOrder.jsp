@@ -8,5 +8,16 @@
 </head>
 <body>
 
+<form action=SellerCancellationConfirmation.jsp method=post	>
+<input type=submit value=Confirm> <br> 
+</form>
+
+<form action=SellerHomepage.jsp method=post	>
+<input type=submit value=Discard> <br> 
+</form>
+
+ <a href="Login.jsp">LogOut</a> <br>
+ <a href="SellerViewCurrentOrders.jsp">View Current Orders</a> <br>
+
 </body>
 </html>

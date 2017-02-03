@@ -8,5 +8,11 @@
 </head>
 <body>
 
+
+ <a href="Login.jsp">LogOut</a> <br>
+ <a href="SellerHomepage.jsp">Home</a> <br>
+ <a href="SellerManageProducts.jsp">Manage Products</a> <br>
+ <a href="SellerViewCurrentOrders.jsp">View Current Orders</a> <br>
+
 </body>
 </html>

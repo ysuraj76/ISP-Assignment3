@@ -8,5 +8,16 @@
 </head>
 <body>
 
+<form action=SellerManageProducts.jsp method=post	>
+<input type=submit value=Save> <br> 
+</form>
+
+<form action=SellerManageProducts.jsp method=post	>
+<input type=submit value=Cancel> <br> 
+</form>
+
+ <a href="Login.jsp">LogOut</a> <br>
+ <a href="SellerHomepage.jsp">Home</a> <br>
+
 </body>
 </html>

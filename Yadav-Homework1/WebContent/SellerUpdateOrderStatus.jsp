@@ -8,5 +8,14 @@
 </head>
 <body>
 
+<form action=SellerViewOrderDetails.jsp method=post	>
+<input type=submit value=Update> <br> 
+</form>
+
+ <a href="Login.jsp">LogOut</a> <br>
+ <a href="SellerHomepage.jsp">Home</a> <br>
+ <a href="SellerManageProducts.jsp">Manage Products</a> <br>
+ <a href="SellerViewCurrentOrders.jsp">Current Orders</a> <br>
+
 </body>
 </html>

@@ -25,7 +25,10 @@ Price: <input type=text name=price><br>
   
 <input type=submit value=Save> <br>
 </form>
-<a href="SellerManageProducts.jsp">Cancel</a> <br></head>
+
+<form action=SellerManageProducts.jsp method=post	>
+<input type=submit value=Cancel> <br> 
+</form>
 
 
 </body>
