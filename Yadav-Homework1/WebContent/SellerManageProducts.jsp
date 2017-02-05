@@ -33,7 +33,7 @@
            <tr><td><% out.println(ph.pdName()); %></td>
            <td><% out.println(ph.category()); %></td>
            <td><% out.println(ph.number()); %></td>
-           <td><% out.println(ph.pdName()); %></td>
+           <td><img src="<% out.println(ph.image()); %>" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
            <td><% out.println(ph.number()); %></td>
            <td><% out.println(ph.number()); %></td>
 

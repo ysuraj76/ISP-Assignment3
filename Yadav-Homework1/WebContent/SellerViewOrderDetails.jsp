@@ -33,7 +33,7 @@
            <td><% out.println(ph.number()); %></td>
            <td><% out.println(sta); %></td>
 
-           <td><form action=SellerViewProduct.jsp method=post	>
+           <td><form action=SellerEditProducts.jsp method=post	>
 		   <input type=submit value=View> <br> </form></td>
 		   
 		   <% if(!sta.equals("Delivered")) {%>

@@ -39,6 +39,13 @@ public class PlaceHolder {
 		return  nm[n];
 	}
 	
+	public String image(){
+		String[] nm={"images/shoes.jpg","images/watch.jpg", "images/tshirt.jpg","images/cap.jpg"};
+		Random rand = new Random();
+		int  n = rand.nextInt(4);
+		
+		return  nm[n];
+	}
 	public String category(){
 		String[] nm={"Home & Decor","Mens", "Womens","Child"};
 		Random rand = new Random();

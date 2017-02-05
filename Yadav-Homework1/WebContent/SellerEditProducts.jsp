@@ -42,7 +42,7 @@
 		   <input type=submit value=Edit> <br> </form></tr></td>
 		   
 		   <tr><td>Product thumbnail</td>
-		   <td><% out.println(ph.pdName()); %></td>
+           <td><img src="<% out.println(ph.image()); %>" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
            <td><form action="SellerEditProducts.jsp " method=post	>
 		   <input type=submit value=Edit> <br> </form></tr></td>
 		   
