@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2> Add a new product </h2>
 <form action=ServProducts method=post	>
 
 Name: <input type=text name=name><br>

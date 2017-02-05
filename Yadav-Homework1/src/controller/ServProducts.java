@@ -50,6 +50,7 @@ public class ServProducts extends HttpServlet {
 		PrintWriter out= response.getWriter();
 		out.println("pid"+prd.getPid());
 		
+		
 	}
 
 	/**

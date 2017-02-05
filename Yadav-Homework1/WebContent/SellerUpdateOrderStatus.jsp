@@ -9,6 +9,10 @@
 <body>
 
 <form action=SellerViewOrderDetails.jsp method=post	>
+Ship date: <input type=text name=ship_date><br>	
+Carrier name: <input type=text name=carrier_name><br>	
+Tracking number: <input type=text name=trk_name><br>	
+
 <input type=submit value=Update> <br> 
 </form>
 
