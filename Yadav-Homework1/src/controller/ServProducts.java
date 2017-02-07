@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -48,7 +49,12 @@ public class ServProducts extends HttpServlet {
 		Products prd=new Products(pid++,name,type,path,description,shipping,items,price);
 		
 		PrintWriter out= response.getWriter();
-		out.println("pid"+prd.getPid());
+		out.println("Total products in the Webite"+prd.getPid());
+		
+        out.println("Last Modified = " + getLastModified(request));
+
+		
+		response.setHeader("Refresh", "2; URL=SellerManageProducts.jsp");
 		
 		
 	}
@@ -61,4 +67,21 @@ public class ServProducts extends HttpServlet {
 		doGet(request, response);
 	}
 
+	public void destroy() {
+	    saveState();
+	  }
+	
+	public void saveState() {
+	    // Try to save the accumulated count
+	    try {
+	      FileWriter fileWriter = new FileWriter("InitDestroyCounter.initial");
+	      String initial = Integer.toString(pid);
+	      fileWriter.write(initial, 0, initial.length());
+	      fileWriter.close();
+	      return;
+	    }
+	    catch (IOException e) {  // problem during write
+	      // Log the exception. See Chapter 5, "Sending HTML Information".
+	    }
+	}
 }

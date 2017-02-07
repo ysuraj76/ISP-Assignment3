@@ -35,6 +35,8 @@ public class ServLogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
+		String type = request.getParameter("type");
+
 		
 		/* The users.properties file is stored in the "WEB-INF" folder.
 		   To access this file, you will need its absolute path. */
@@ -46,7 +48,6 @@ public class ServLogin extends HttpServlet {
 		/* Following two statements are used to obtain the absolute path 
 		   of the users.properies file from its relative path. */
 		ServletContext sc = this.getServletContext();
-		String propFilePath = sc.getRealPath("/WEB-INF/users.properties");
 		
 		Properties p = new Properties();
 		
@@ -55,12 +56,25 @@ public class ServLogin extends HttpServlet {
 			// Check whether the username exists or not
 			Users usr = new Users(userName,password);
 			
-						
+			if(type.equals("cust")){
+			String propFilePath = sc.getRealPath("/WEB-INF/cust.properties");
+			
 			if(usr.validateUser(usr, propFilePath).equals("valid"))
-				response.sendRedirect("SellerHomepage.jsp");
+				response.sendRedirect("CustHomepage.jsp");
 			
 			if(usr.validateUser(usr, propFilePath).equals("invalid"))
 				response.sendRedirect("Register.jsp");
+			}
+			
+			else{
+				String propFilePath = sc.getRealPath("/WEB-INF/seller.properties");
+				
+				if(usr.validateUser(usr, propFilePath).equals("valid"))
+					response.sendRedirect("SellerHomepage.jsp");
+				
+				if(usr.validateUser(usr, propFilePath).equals("invalid"))
+					response.sendRedirect("Register.jsp");
+			}
 	}
 
 	/**

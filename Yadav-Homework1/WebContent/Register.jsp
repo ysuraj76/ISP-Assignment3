@@ -15,7 +15,13 @@
 
 User Name: <input type=text name=userName><br>
 Password: <input type=password name=password><br>
-<input type=submit value=Register> <br> 
+Register as:
+<select name="type">
+    <option value="cust">Customer</option>
+    <option value="seller">Seller</option><br>
+   </select><br>
+ 
+ <input type=submit value=Register> <br> 
 
 </form>
 
@@ -23,7 +29,7 @@ Password: <input type=password name=password><br>
 <br>
 
 <!-- Navigation links --> 
-<a href="Login.jsp"> Home Page </a> <br>
+<a href="Login.jsp">Login </a> <br>
 
 
 </body>
