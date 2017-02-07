@@ -29,7 +29,7 @@ public class ServProducts extends HttpServlet {
     }
     
     public void init() throws ServletException {
-		pid = 0;
+		pid = 1;
 	}
 
 	/**
