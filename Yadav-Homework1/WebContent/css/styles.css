@@ -8,6 +8,7 @@
 
 body {
     background-color: lavender;
+    	text-align: center;
     	width: 900px;	
     	margin: 0 auto; 
     
@@ -42,6 +43,9 @@ a:hover {
 a:active {
     color: blue;
 }
+ button {
+left: 420px;
+ }
 
 h1 {
 	font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;

@@ -15,23 +15,36 @@
 
 <% PlaceHolder ph = new PlaceHolder(); %>
 
-<h2> Details for Product '<%out.println(ph.pdName());%>'</h2>
+<h2> Transaction Confirmed </h2>
 
 
- 	<b>Order# : </b> <% out.println(ph.number());%><br>
-   <b>Order Date: </b><%out.println(ph.date()); %><br>
-   <b>Price: </b><%out.println(ph.number()); %><br>
-   <b>Status: </b><%out.println(ph.status()); %><br><br>
+<table border="2">
    
-<form action=CustCancellationConfirmation.jsp method=post	>
-<input type=submit value=Confirm> <br> 
-</form>
-
-<form action=CustHomepage.jsp method=post	>
-<input type=submit value=Discard> <br> 
-</form>
-
-<a href="CustViewOrders.jsp">View Current Orders</a> <br>
-
+   		 <tr><td>Item</td>
+   		 <td>Quantity</td>
+   		 <td>Total Price in $</td>
+         <td>Seller Name</td>
+   	
+   <% 
+		for(int i=0; i<3; i++)
+	{ 		String sta=ph.status();
+			%>
+				
+  	       
+  	       
+           <tr><td><% out.println(ph.pdName()); %></td>
+          <td><% out.println(ph.number()); %></td>
+		   <td><% out.println(ph.number()); %></td>
+         
+           <td><% out.println(ph.name()); %></td>
+           
+		 	   
+		  <%	
+       }
+   %>
+   </table>
+   
+   <a href="CustViewOrders.jsp">View Orders</a>
+   
 </body>
 </html>

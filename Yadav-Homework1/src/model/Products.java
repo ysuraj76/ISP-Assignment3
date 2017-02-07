@@ -23,6 +23,7 @@ public Products(int id,String name,String type,String path, String desc, String 
 }
 
 public int getPid(){
+	
 	return id;
 }
 

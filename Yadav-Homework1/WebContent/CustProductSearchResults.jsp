@@ -15,9 +15,11 @@
 <h2>Orders</h2>
 <table border="2">
    <tr>
-        <td>Order#</td>
-        <td>Order Total</td>
-        <td>Order Date</td>
+        <td>Name</td>
+        <td>Category</td>
+        <td>Seller Name</td>
+        <td>Price</td>
+        <td>Image</td>
        
    </tr>
   
@@ -28,17 +30,21 @@
 			%>
 				
   
-           <tr><td><% out.println(ph.number()); %></td>
+           <tr><td><% out.println(ph.pdName()); %></td>
+           <td><% out.println(ph.category()); %></td>
+           <td><% out.println(ph.name()); %></td>
            <td><% out.println(ph.number()); %></td>
-           <td><% out.println(ph.date()); %></td>
-           <td><form action=CustManageOrder.jsp method=post	>
+           <td><img src="<% out.println(ph.image()); %>" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
+           
+           <td><form action=CustViewProductDetails.jsp method=post	>
 		   <input type=submit value=View> <br> </form></td></tr>
          
    <%
        }
    %>
    </table>
-
+   
+   <a href="CustManageOrder.jsp">Manage Order</a>
 
 </body>
 </html>

@@ -3,7 +3,11 @@ package controller;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,15 +49,19 @@ public class ServProducts extends HttpServlet {
 		String shipping=request.getParameter("shipping");
 		String items=request.getParameter("items");
 		String price=request.getParameter("price");
-
-		Products prd=new Products(pid++,name,type,path,description,shipping,items,price);
 		
+		synchronized (this) {
+			pid++;
+
+		}
+		Products prd=new Products(pid,name,type,path,description,shipping,items,price);
+
 		PrintWriter out= response.getWriter();
 		out.println("Total products in the Webite"+prd.getPid());
 		
         out.println("Last Modified = " + getLastModified(request));
 
-		
+		saveState();
 		response.setHeader("Refresh", "2; URL=SellerManageProducts.jsp");
 		
 		
@@ -67,21 +75,33 @@ public class ServProducts extends HttpServlet {
 		doGet(request, response);
 	}
 
-	public void destroy() {
+	
+	public void destroy(){
 	    saveState();
 	  }
 	
+	
 	public void saveState() {
-	    // Try to save the accumulated count
 	    try {
-	      FileWriter fileWriter = new FileWriter("InitDestroyCounter.initial");
-	      String initial = Integer.toString(pid);
-	      fileWriter.write(initial, 0, initial.length());
+			ServletContext sc = this.getServletContext();
+			String path = sc.getRealPath("/WEB-INF/logs.txt");
+			
+			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss"); 
+			Date date = new Date();
+
+	     // FileWriter fileWriter = new FileWriter("C:/Users/suraj/Documents/464/Homework1/logs.txt");
+		      FileWriter fileWriter = new FileWriter(path);
+
+			String initial = Integer.toString(pid);
+	      fileWriter.write(" \nTime Stamp: " + dateFormat.format(date) );
+	     
+	      fileWriter.write(" No. of products "+initial);
 	      fileWriter.close();
 	      return;
 	    }
-	    catch (IOException e) {  // problem during write
-	      // Log the exception. See Chapter 5, "Sending HTML Information".
+	    catch (IOException e) {  
+			e.printStackTrace();
+
 	    }
 	}
 }
