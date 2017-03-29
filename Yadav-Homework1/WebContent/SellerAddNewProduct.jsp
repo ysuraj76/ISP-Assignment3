@@ -12,9 +12,9 @@
 <div id="right"><a href="SellerHomepage.jsp">Home</a></div>
 
 <h2> Add a new product </h2>
-<form action=ServProducts method=post	>
+<form action=ServProducts method=post>
 
-Name: <input type=text name=name><br>
+Name: <input type=text name=name required> <br>
 Product Type:
 <select name="product">
     <option value="Home">Home & Decor</option>
@@ -24,9 +24,9 @@ Product Type:
   </select><br>
 Product Image/Video: <input type=text name=path><br>
 Product Description: <input type=text name=description><br>
-Estimated Shipping time: <input type=text name=shipping><br>
-No. of items: <input type=text name=items><br>
-Price: <input type=text name=price><br>
+Estimated Shipping time: <input type=text name=shipping required><br>
+No. of items: <input type=text name=items required><br>
+Price: <input type=text name=price required><br>
   
 <input type=submit value=Save> <br>
 </form>

@@ -9,22 +9,51 @@
 </head>
 <body>
 
-<h1> Welcome to A-2-Z Corp !!!</h1>
+<h1> Welcome to A2Z Corp !!!</h1>
 <h2>Buyers meet Sellers here </h2>
 
 
 <h2> Login here</h2>
+<%!
+	String uName;
+	String pwd;
+%>
+
+<%
+	Cookie cookieList[] = request.getCookies();
+	if(cookieList != null) {
+		for (int i = 0; i < cookieList.length; i++) {
+			Cookie c = cookieList[i];
+			if(c.getName().equals("uName")) {
+				uName = c.getValue();
+			}
+			if(c.getName().equals("pwd")) {
+				pwd = c.getValue();
+			}
+		}
+	}
+	
+	if(uName == null || uName.trim().equals(""))
+		uName ="";
+	if(pwd == null || pwd.trim().equals("")) 
+		pwd = "";
+
+	
+
+%>
 
 <form action=ServLogin method=post	>
 
-User Name: <input type=text name=userName><br>	
-Password: <input type=password name=password><br>
 I am a:
 <select name="type">
     <option value="cust">Customer</option>
     <option value="seller">Seller</option><br>
-   </select><br>
-   
+   </select><br><br>
+
+User Name: <input type=text name=userName value=<%=uName%>><br>	
+Password: <input type=password name=password value=<%=pwd%>>><br>
+<INPUT TYPE="CHECKBOX" name="storePass">Remember me on this Computer<br><br>
+ 
 <input type=submit value=Login> <br> 
 
 </form>

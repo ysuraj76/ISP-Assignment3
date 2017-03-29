@@ -8,12 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> Welcome Customer</h1>
-<form action=CustProductSearchResults.jsp method=post	>
+<h1>Welcome ${user.userName}</h1>
+<form action=ServSearchQuery method=post	>
 
 Section:
 <select name="product">
-    <option value="Home">Home & Decor</option>
+	    <option value="All">All</option>
+	    <option value="Home">Home & Decor</option>
     <option value="Mens">Mens Aparel</option>
     <option value="Womens">Womens Apparel</option>
     <option value="Child">Children</option>
@@ -22,9 +23,11 @@ Section:
 Items to Search: <input type=text name=searchVal><br>
   
 <input type=submit value=Search> <br>
-
-<a href="Login.jsp">LogOut</a> <br>
-
 </form>
+
+<a href="ServLogout">LogOut</a> <br>
+<a href="ServViewOrders">View Orders</a> <br>
+
+
 </body>
 </html>

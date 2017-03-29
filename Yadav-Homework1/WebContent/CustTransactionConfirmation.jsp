@@ -6,6 +6,8 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,7 +17,8 @@
 
 <% PlaceHolder ph = new PlaceHolder(); %>
 
-<h2> Transaction Confirmed </h2>
+<h2> ${Trans.message} </h2>
+<c:if test="${Trans.sucess}">
 
 
 <table border="2">
@@ -25,24 +28,26 @@
    		 <td>Total Price in $</td>
          <td>Seller Name</td>
    	
-   <% 
-		for(int i=0; i<3; i++)
-	{ 		String sta=ph.status();
-			%>
+ <c:forEach items="${Items}" var="temp">
+
 				
   	       
   	       
-           <tr><td><% out.println(ph.pdName()); %></td>
-          <td><% out.println(ph.number()); %></td>
-		   <td><% out.println(ph.number()); %></td>
+           <tr><td>${temp.name}</td>
+          <td>${temp.qnt}</td>
+		   <td>${temp.prd_price }</td>
+		   
          
-           <td><% out.println(ph.name()); %></td>
+           <td>${temp.seller_name}</td>
            
 		 	   
-		  <%	
-       }
-   %>
+    </c:forEach>
    </table>
+      <a href="CustTransactionConfirmation.jsp">Print</a>
+   
+   </c:if>
+   
+   
    
    <a href="CustViewOrders.jsp">View Orders</a>
    

@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 </head>
 <body>
 
@@ -20,59 +22,45 @@
 
 <table border="2">
    
-         
-   <% 
-		for(int i=0; i<1; i++)
-	{ 		String sta=ph.status();
-			%>
-				
+         				
   	       <tr><td>Item</td>
-           <td><% out.println(ph.pdName()); %></td>
+           <td>${Prdts.name}</td>
           
 		   <tr><td>Price in $</td>
-           <td><% out.println(ph.number()); %></td>
+           <td>${Prdts.price}</td>
            
            <tr><td>Seller Name</td>
-           <td><% out.println(ph.name()); %></td>
+           <td>${Prdts.sellName}</td>
            
            <tr><td>Available Quantity</td>
-		   <td><% out.println(ph.number()); %></td>        
+		   <td>${Prdts.quantity}</td>        
            
            <tr><td>Estimated Delivery date</td>
-		   <td><% out.println(ph.date()); %></td>  
+		   <td>${Prdts.shipDate}</td>  
 		   
 		   <tr><td>Product thumbnail</td>
-           <td><img src="<% out.println(ph.image()); %>" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
+           <td><img src="${Prdts.path}" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
            
 		   <tr><td>Product Description</td>
-		   <td><% out.println("Best in performance"); %></td>
+		   <td>${Prdts.description}</td>
            
-		   <tr><td>Question and Answers</td>
-		   <td><% out.println("Add Q&A"); %></td>
-		   
-		   <tr><td>Overall Rating</td>
-		   <td><% out.println(ph.number()); %></td>
-		   
-		   <tr><td>Customer Name</td>
-           <td><% out.println(ph.name()); %></td>
-           
-           <tr><td>Review Date</td>
-		   <td><% out.println(ph.date()); %></td>
+		      
+		   <tr><td>Review Date</td>
+		   <td>${Prdts.revDate}</td>
 		   
 		   <tr><td>Customer Rating</td>
-		   <td><% out.println(ph.number()); %></td>
+		   <td>${Prdts.rating}</td>
 		   
 		   <tr><td>Customer Review</td>
-		   <td><% out.println("Best Product"); %></td>
+		   <td>${Prdts.review}</td>
 		   
                    
 		   
-		  <%	
-       }
-   %>
+ 
    </table>
 
-<form action=CustCheckoutCart.jsp method=post	>
+<form action=ServUpdateCart method=post	>
+Quantity: <input type=text name=qnty>
 <input type=submit value="Add to cart"> <br> 
 </form>
 

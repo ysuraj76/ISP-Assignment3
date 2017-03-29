@@ -6,10 +6,12 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <title>Insert title here</title>
 </head>
 <body>
-<div id="right"><a href="Login.jsp">LogOut</a> <br></div>
+<div id="right"><a href=ServLogout>LogOut</a> <br></div>
 <div id="right"><a href="CustHomepage.jsp">Home</a></div>
 
 <% PlaceHolder ph = new PlaceHolder(); %>
@@ -26,41 +28,39 @@
 		   <td>Total Price in $</td>
            <td>Estimated Delivery date</td></tr>
          
-   <% 
-		for(int i=0; i<3; i++)
-	{ 		String sta=ph.status();
-			%>
+  
 				
+ <c:forEach items="${Cart}" var="temp" varStatus="loop">
   	       
   	       
-           <tr><td><% out.println(ph.pdName()); %></td>
+           <tr><td>${temp.name}</td>
           
-           <td><img src="<% out.println(ph.image()); %>" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
+           <td><img src="${temp.path}" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
            
-           <td><% out.println(ph.name()); %></td>
+           <td>${temp.sellName}</td>
            
-		   <td><% out.println(ph.number()); %></td>
+		   <td>${temp.reqQuantity}</td>
 		   
-           <td><% out.println(ph.number()); %></td>
+           <td>${temp.totalAmount}</td>
                    
            
-		   <td><% out.println(ph.date()); %></td>  
+		   <td>${temp.shipDate}</td>  
 		   
-		    <td><form action=CustCheckoutCart.jsp method=post	>
+		    <td><form action=ServDelProd method=post	>
+           <input type=hidden name=DelProdId value="${loop.count}">    
 		   <input type=submit value=Delete> <br> </form></td></tr>
 		                    
-		   
-		  <%	
-       }
-   %>
+		</c:forEach>   
+	
    </table>
+Total Cost: ${SumCart} 
 
 <form action=CustTransaction.jsp method=post	>
 <input type=submit value="Check Out"> <br> 
 </form><br>
 
 
-Total Cost: <% out.println(ph.number()); %> $
+
 
 
 </body>

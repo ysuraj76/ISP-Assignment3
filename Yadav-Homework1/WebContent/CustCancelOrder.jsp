@@ -6,24 +6,28 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt" %>
+
 <title>Insert title here</title>
 </head>
 <body>
 
-<div id="right"><a href="Login.jsp">LogOut</a> <br></div>
+<div id="right"><a href="ServLogout">LogOut</a> <br></div>
 <div id="right"><a href="CustHomepage.jsp">Home</a></div>
 
-<% PlaceHolder ph = new PlaceHolder(); %>
+<c:set var="id" scope="session" value="${Index}"/>
 
-<h2> Details for Product '<%out.println(ph.pdName());%>'</h2>
+<h2> Details for Product '${Items.get(id).name}'</h2>
 
 
- 	<b>Order# : </b> <% out.println(ph.number());%><br>
-   <b>Order Date: </b><%out.println(ph.date()); %><br>
-   <b>Price: </b><%out.println(ph.number()); %><br>
-   <b>Status: </b><%out.println(ph.status()); %><br><br>
+ 	<b>Order# : </b>${Ord.id}<br>
+   <b>Order Date: </b>${Ord.ordDate}<br>
+   <b>Price: </b>${Items.get(id).prd_price}<br>
+   <b>Quantity: </b>${Items.get(id).qnt}<br>
+   <b>Status: </b>${Items.get(id).shipping}<br><br>
    
-<form action=CustCancellationConfirmation.jsp method=post	>
+<form action=ServCancelConfirmation method=post	>
 <input type=submit value=Confirm> <br> 
 </form>
 

@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 </head>
 <body>
 <div id="right"><a href="Login.jsp">LogOut</a> <br></div>
@@ -19,72 +21,62 @@
 
 <table border="2">
    
-   		 <tr><td>Item</td>
-   		 <td>Quantity</td>
-   		 <td>Total Price in $</td>
-         <td>Seller Name</td>
-   	
-   <% 
-		for(int i=0; i<3; i++)
-	{ 		String sta=ph.status();
-			%>
-				
-  	       
-  	       
-           <tr><td><% out.println(ph.pdName()); %></td>
-          <td><% out.println(ph.number()); %></td>
-		   <td><% out.println(ph.number()); %></td>
+   	<tr><td>Item</td>
+           <td>Product thumbnail</td>
+           <td>Seller Name</td>
+           <td>Quantity</td>
+		   <td>Total Price in $</td>
+           <td>Estimated Delivery date</td></tr>
          
-           <td><% out.println(ph.name()); %></td>
+  
+				
+ <c:forEach items="${Cart}" var="temp" varStatus="loop">
+  	       
+  	       
+           <tr><td>${temp.name}</td>
+          
+           <td><img src="${temp.path}" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
            
-		 	   
-		  <%	
-       }
-   %>
+           <td>${temp.sellName}</td>
+           
+		   <td>${temp.reqQuantity}</td>
+		   
+           <td>${temp.totalAmount}</td>
+                   
+           
+		   <td>${temp.shipDate}</td>  
+		   
+		    
+		                    
+		</c:forEach>   
+	
    </table>
+Total Cost: ${SumCart} 
    
  
  
- <form action=CustTransactionConfirmation.jsp method=post	>
+ <form action=ServTransactionConfirmation method=post	>
 
 Account Holders Details<br>
 
-First Name: <input type=text name=name><br>
-Last Name: <input type=text name=name><br>
+Name: <input type=text name=name><br>
 
 Card Type:
-<select name="card">
+<select name="card-type">
     <option value="Mastercard">Mastercard</option>
     <option value="Visa">Visa</option>
     <option value="Discover">Discover</option>
   </select><br>
   
-Card Number: <input type=text name=path><br>
-CVV: <input type=text name=description><br>
-Month <select name="month">
-    <option value="Jan">Jan</option>
-    <option value="Feb">Feb</option>
-    <option value="Mar">Mar</option>
-    <option value="Apr">Apr</option>
-    <option value="May">May</option>
-    <option value="Jun">Jun</option>
-    <option value="July">July</option>
-    <option value="Aug">Aug</option>
-    <option value="Sep">Sep</option>
-    <option value="Oct">Oct</option>
-    <option value="Nov">Nov</option>
-    <option value="Dec">Dec</option>
-  </select>
-  Year <select name="month">
-    <option value="2017">2017</option>
-    <option value="2018">2018</option>
-    <option value="2019">2019</option>
-    <option value="2020">2020</option>
+Card Number: <input type=text name=card><br>
+CVV: <input type=text name=cvv><br>
+
+Expiration date: <input type=text name=expDate><br>
+
     
   </select><br>
 Billing Address: <input type=text name=Billing><br>
 Shipping Address: <input type=text name=Shipping><br>
-Price: <input type=text name=price><br>
   
 <input type=submit value=Confirm> <br>
 </form>

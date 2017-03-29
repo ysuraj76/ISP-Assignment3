@@ -6,6 +6,8 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -21,22 +23,19 @@
        
    </tr>
   
-   <%
- 		PlaceHolder ph = new PlaceHolder();
-		for(int i=0; i<3; i++)
-	{ 
-			%>
+<c:forEach items="${Orders}" var="temp" varStatus="loop">
 				
   
-           <tr><td><% out.println(ph.number()); %></td>
-           <td><% out.println(ph.number()); %></td>
-           <td><% out.println(ph.date()); %></td>
-           <td><form action=CustManageOrder.jsp method=post	>
-		   <input type=submit value=View> <br> </form></td></tr>
-         
-   <%
-       }
-   %>
+           <tr><td>${temp.id}</td>
+           <td>${temp.totCost}</td>
+           <td>${temp.ordDate}</td>
+           <td><form action=ServManageOrders method=post	>
+           <input type=hidden name=OrderId value="${temp.id}">
+           <input type=hidden name=OrderIndex value="${loop.count}" >
+           <input type=submit value=View> <br> </form></td></tr>
+        
+    </c:forEach>
+
    </table>
 
 

@@ -14,7 +14,9 @@
 
 <% PlaceHolder ph = new PlaceHolder(); %>
 
-<h2> Products Sold </h2>
+<h2> Products Dashboard </h2>
+
+
 
 
 <table border="2">
@@ -25,6 +27,8 @@
         <td>Product thumbnail</td>
         <td>Total purchases$</td>
         <td>Item left</td>
+        
+        
        
    </tr>
   
@@ -34,7 +38,7 @@
 			%>
 				
   
-           <tr><td><% out.println(ph.pdName()); %></td>
+           <tr><td><% out.println(ph.category());%></td>
            <td><% out.println(ph.category()); %></td>
            <td><% out.println(ph.number()); %></td>
            <td><img src="<% out.println(ph.image()); %>" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>

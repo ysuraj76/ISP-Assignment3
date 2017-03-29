@@ -7,9 +7,11 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 </head>
 <body>
-<div id="right"><a href="Login.jsp">LogOut</a> <br></div>
+<div id="right"><a href="ServLogout">LogOut</a> <br></div>
 <div id="right"><a href="CustHomepage.jsp">Home</a></div>
 
 <h2>Orders</h2>
@@ -22,26 +24,20 @@
         <td>Image</td>
        
    </tr>
-  
-   <%
- 		PlaceHolder ph = new PlaceHolder();
-		for(int i=0; i<3; i++)
-	{ 
-			%>
+ <c:forEach items="${products}" var="temp" >
 				
   
-           <tr><td><% out.println(ph.pdName()); %></td>
-           <td><% out.println(ph.category()); %></td>
-           <td><% out.println(ph.name()); %></td>
-           <td><% out.println(ph.number()); %></td>
-           <td><img src="<% out.println(ph.image()); %>" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
+           <tr><td>${temp.name}</td>
+           <td>${temp.type}</td>
+           <td>${temp.sellName}</td>
+           <td>${temp.price}</td>
+           <td><img src="${temp.path}" class="img-rounded" alt="Cinque Terre" width="150" height="100"></td>
            
-           <td><form action=CustViewProductDetails.jsp method=post	>
+           <td><form action=ServProdSearchResults method=post	>
+           <input type=hidden name=ProdId value="${temp.id}">
 		   <input type=submit value=View> <br> </form></td></tr>
          
-   <%
-       }
-   %>
+    </c:forEach>
    </table>
    
    <a href="CustManageOrder.jsp">Manage Order</a>

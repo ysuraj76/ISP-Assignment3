@@ -6,20 +6,23 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <title>Insert title here</title>
 </head>
 <body>
 
-<div id="right"><a href="Login.jsp">LogOut</a> <br></div>
-<div id="right"><a href="CustHomepage">Home</a></div>
+<div id="right"><a href="ServLogout">LogOut</a> <br></div>
+<div id="right"><a href="CustHomepage.jsp">Home</a></div>
 
 <% PlaceHolder ph = new PlaceHolder(); %>
+<c:set var="id" scope="session" value="${Index}"/>
 
-<h2> The Product '<%out.print(ph.pdName());%>' in the Order# <% out.println(ph.number()); %> has been cancelled</h2>
+<h2> The Product '${Items.get(id).name}' in the Order# ${Ord.id} has been cancelled</h2>
 
-<b>Amount to be refunded: </b><%out.println(ph.number());%>$<br>
+<b>Amount to be refunded: $</b>${total}<br>
 
-<a href="CustViewOrders.jsp">View Current Orders</a> <br>
+<a href="ServViewOrders">View Current Orders</a> <br>
 
 </body>
 </html>

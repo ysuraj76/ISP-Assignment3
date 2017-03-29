@@ -12,10 +12,13 @@
 <div id="right"><a href="Login.jsp">LogOut</a> <br></div>
 
 <div id="wrap">
-<h1>Welcome Seller</h1>
+<jsp:useBean id="user" class="model.Users" scope="session"/>
+<h1>Welcome ${user.userName}</h1>
 
+	
+	
 <a href="SellerViewCurrentOrders.jsp">View Current Orders</a> <br>
-<a href="SellerManageProducts.jsp">Manage Orders</a> <br><br>
+<a href="ServManageProducts">Manage Orders</a> <br><br>
 
 <div id="picSeller"><img src="images/seller.jpg" alt="seller" style="width:600px;height:400px;"><br></div>
 
