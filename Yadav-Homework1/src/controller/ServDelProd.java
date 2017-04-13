@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -47,9 +48,11 @@ public class ServDelProd extends HttpServlet {
 		cart.remove(Integer.parseInt(del)-1);
 		
 		
-		
+//		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("CustCheckoutCart.jsp");
 		dispatcher.forward(request, response);
+		
+		
 		
 	}
 

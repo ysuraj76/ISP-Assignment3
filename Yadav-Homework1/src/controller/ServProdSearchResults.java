@@ -40,9 +40,19 @@ public class ServProdSearchResults extends HttpServlet {
 		Products pd=new Products();
 		try {
 			Products prdts=pd.productDetails(Id);
+			prdts.getReviewDb(Id);
+			prdts.getQA();
+			
+			
+			
+			System.out.println("rating "+prdts.getRating());
+			System.out.println("reviews "+prdts.getReview());
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("Prdts", prdts);
+			
+			session.setAttribute("QA", prdts.getQa());
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

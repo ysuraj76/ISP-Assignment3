@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Banking;
 import model.OrderItems;
 import model.Orders;
 import model.Products;
@@ -48,8 +47,8 @@ public class ServCancelConfirmation extends HttpServlet {
 	      Products pd=new Products();
 	      pd.updateQnty(items.get(val).getPrd_id(), items.get(val).getQnt(),"return");
 	      
-	      Banking bk =new Banking();
-	      bk.updateBalance(or.getCardNo(), items.get(val).getPrd_price()*items.get(val).getQnt(),"return");
+	  //    Banking bk =new Banking();
+	   //   bk.updateBalance(or.getCardNo(), items.get(val).getPrd_price()*items.get(val).getQnt(),"return");
 	      
 	      Double tot=items.get(val).getPrd_price()*items.get(val).getQnt();
 	      request.setAttribute("total", tot);

@@ -9,6 +9,21 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
 <title>Insert title here</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+	function cancelItem() {
+		var id = $("#DelProdId").val();
+
+		// Sending request to servlet of the same app
+		$.get("ServCancelItem", {
+			index : id
+		}, function(data, status) {
+			alert("Item Removed");
+			location.reload();
+					});
+	}
+	</script>
 </head>
 <body>
 <div id="right"><a href=ServLogout>LogOut</a> <br></div>
@@ -46,9 +61,9 @@
            
 		   <td>${temp.shipDate}</td>  
 		   
-		    <td><form action=ServDelProd method=post	>
-           <input type=hidden name=DelProdId value="${loop.count}">    
-		   <input type=submit value=Delete> <br> </form></td></tr>
+		    
+           <td><input type=hidden id="DelProdId" value="${loop.count}"></td>    
+		  <td> <input type=submit value=Delete onClick="cancelItem()"> <br> </td></tr>
 		                    
 		</c:forEach>   
 	

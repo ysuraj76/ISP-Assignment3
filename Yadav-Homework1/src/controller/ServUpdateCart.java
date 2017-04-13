@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -35,8 +36,9 @@ public class ServUpdateCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String qnty = request.getParameter("qnty");
-		
+		String qnty = request.getParameter("quantity");
+		int transactionStatus=0;
+		System.out.println("qnty "+qnty);
 
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(60);
@@ -71,13 +73,18 @@ public class ServUpdateCart extends HttpServlet {
 			
 							
 			session.setAttribute("SumCart", SumCart);
+			transactionStatus=1;
 			
 		} else {
 			link = "CustViewProductDetails.jsp";
+			transactionStatus=-1;
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(link);
-		dispatcher.forward(request, response);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher(link);
+//		dispatcher.forward(request, response);
+		
+		PrintWriter out = response.getWriter(); 
+		out.println(transactionStatus);
 
 	}
 

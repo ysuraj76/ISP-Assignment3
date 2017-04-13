@@ -9,6 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
 <title>Insert title here</title>
+
 </head>
 <body>
 

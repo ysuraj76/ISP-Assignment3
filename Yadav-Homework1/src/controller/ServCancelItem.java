@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.OrderItems;
+import model.Products;
 
 /**
  * Servlet implementation class ServCancelItem
@@ -41,11 +43,19 @@ public class ServCancelItem extends HttpServlet {
         HttpSession session = request.getSession();	
         session.setAttribute("Index", Integer.parseInt(id)-1);
         
-
-    	RequestDispatcher dispatcher = request.getRequestDispatcher("CustCancelOrder.jsp");
-		dispatcher.forward(request, response);
+        ArrayList<Products> cart =(ArrayList<Products>) session.getAttribute("Cart");
+        double total = (double) session.getAttribute("SumCart");
+        
+        total=total-Double.parseDouble(cart.get(Integer.parseInt(id)-1).getTotalAmount());
+        cart.remove(Integer.parseInt(id)-1);
+        
+        session.setAttribute("SumCart", total);
+        session.setAttribute("Cart", cart);
+//    	RequestDispatcher dispatcher = request.getRequestDispatcher("CustCancelOrder.jsp");
+//		dispatcher.forward(request, response);
 		
-		
+		PrintWriter out = response.getWriter(); 
+		out.println(1);
 
 	}
 

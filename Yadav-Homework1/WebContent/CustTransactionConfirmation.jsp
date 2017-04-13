@@ -17,8 +17,8 @@
 
 <% PlaceHolder ph = new PlaceHolder(); %>
 
-<h2> ${Trans.message} </h2>
-<c:if test="${Trans.sucess}">
+<h2> Transaction Successful </h2>
+
 
 
 <table border="2">
@@ -45,7 +45,7 @@
    </table>
       <a href="CustTransactionConfirmation.jsp">Print</a>
    
-   </c:if>
+   
    
    
    

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,11 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Banking;
+
 import model.OrderItems;
 import model.Orders;
 import model.Products;
-import model.Transactions;
 import model.Users;
 
 /**
@@ -40,32 +40,34 @@ public class ServTransactionConfirmation extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		String type = request.getParameter("card-type");
+		System.out.println("In serv transac conf");
+		/*String type = request.getParameter("card-type");
 		String name = request.getParameter("name");
 		String cardNo = request.getParameter("card");
 		String cvv = request.getParameter("cvv");
-		String expDate = request.getParameter("expDate");
-
+		String expDate = request.getParameter("expDate");*/
+		
+		String message = request.getParameter("message");
 		String billAdd = request.getParameter("Billing");
 		String shpAdd = request.getParameter("Shipping");
-
+		String cardNo = request.getParameter("card");
+		
 		HttpSession session = request.getSession();
 		Users usr = (Users) session.getAttribute("user");
 		double total = (double) session.getAttribute("SumCart");
 
 		
-		Transactions tr = new Transactions();
-		tr = tr.getTransaction(usr);
-		Banking bk=new Banking();
+		//Transactions tr = new Transactions();
+		//tr = tr.getTransaction(usr);
+		//Banking bk=new Banking();
 
-		boolean val = tr.checkTransaction(name, type, cardNo, cvv, expDate,
-				total);
-		if (val) {
+//		boolean val = tr.checkTransaction(name, type, cardNo, cvv, expDate,
+//				total);
+	
 
-			Orders ord = new Orders(tr.getUsrId(), total,
+			Orders ord = new Orders(usr.getId(), total,
 					shpAdd, billAdd, cardNo);
-			bk.updateBalance(cardNo, total, "order");
+			// bk.updateBalance(cardNo, total, "order");
 			
 			ord.insertOrder();
 			session.setAttribute("order", ord);
@@ -93,20 +95,25 @@ public class ServTransactionConfirmation extends HttpServlet {
 				aItems.add(itm);
 				
 			}
+			
+			System.out.println("items size"+aItems.size());
 
 			session.setAttribute("Items", aItems);
+			session.setMaxInactiveInterval(120);
 
 			session.removeAttribute("Cart");
 
-		}
+		
 
-		session.setAttribute("Trans", tr);
-		System.out.println("message " + tr.getMessage());
+		//session.setAttribute("Trans", tr);
+		
+		PrintWriter out = response.getWriter(); 
+		out.println(1);
+// RequestDispatcher dispatcher = request
+//				.getRequestDispatcher("CustTransactionConfirmation.jsp");
+//		dispatcher.forward(request, response);
 
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("CustTransactionConfirmation.jsp");
-		dispatcher.forward(request, response);
-
+//		
 	}
 
 	/**

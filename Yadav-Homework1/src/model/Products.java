@@ -21,13 +21,14 @@ public class Products {
 	double totalAmount;
 	int delDate;
 	String revDate;
-	int rating;
-	String review;
+	double rating;
+	String review=new String("");
 	int reqQuantity;
+	ArrayList<String> qa=new ArrayList<>();
 
 	public Products(String Id, String name, String type, String sel_name,
 			String price, String path, String qnty, String del_date,
-			String desc, String rev_date, String rate, String rvw) {
+			String desc) {
 		this.id = Integer.parseInt(Id);
 		this.name = name;
 		this.type = type;
@@ -37,9 +38,7 @@ public class Products {
 		this.quantity = Integer.parseInt(nullPossible(qnty));
 		this.price = Double.parseDouble(nullPossible(price));
 		this.description = desc;
-		this.revDate = rev_date;
-		this.rating = Integer.parseInt(nullPossible(rate));
-		this.review = rvw;
+		
 	}
 
 	private String nullPossible(String val) {
@@ -89,6 +88,10 @@ public class Products {
 		return type;
 	}
 	
+
+	public ArrayList<String> getQa() {
+		return qa;
+	}
 
 	public int getSeller_id() {
 		return seller_id;
@@ -165,6 +168,7 @@ public class Products {
 				+ " on pd.ProducCategoryIndex=cat.Id and pd.SellerId=us.Id"
 				+ " where pd.ProductName LIKE '%" + val + "%';";
 
+
 		System.out.println(query);
 
 		ResultSet rs = db.select(query);
@@ -174,7 +178,7 @@ public class Products {
 			System.out.println(" rs " + rs.getString(1));
 			items.add(new Products(rs.getString(1), rs.getString(2), rs
 					.getString(3), rs.getString(4), rs.getString(5), rs
-					.getString(6), null, null, null, null, null, null));
+					.getString(6), null, null, null));
 
 		}
 
@@ -189,9 +193,9 @@ public class Products {
 
 		String query = "Select pd.ProductName, pd.Price, us.Username,pd.AvailableQuantity, "
 				+ "pd.EstimatedDeliveryDays, pd.ProductPhotosLinks"
-				+ ", pd.ProductDescription, cus.Review, cus.Rating, cus.ReviewDate, pd.Id, pd.SellerId"
-				+ " From Products pd join CustomerReviews cus join Users us"
-				+ " on pd.Id=cus.ProductId and pd.SellerId=us.Id"
+				+ ", pd.ProductDescription, pd.Id, pd.SellerId"
+				+ " From Products pd join Users us"
+				+ " on pd.SellerId=us.Id"
 				+ " where pd.Id =" + Integer.parseInt(id) + ";";
 
 		System.out.println(query);
@@ -203,17 +207,117 @@ public class Products {
 		System.out.println(" rs " + rs.getString(1));
 		Products pd = new Products(id, rs.getString(1), null, rs.getString(3),
 				rs.getString(2), rs.getString(6), rs.getString(4),
-				rs.getString(5), rs.getString(7), rs.getString(10),
-				rs.getString(9), rs.getString(8));
+				rs.getString(5), rs.getString(7));
 		
-		pd.seller_id=rs.getInt(12);
-		pd.id=rs.getInt(11);
+		pd.seller_id=rs.getInt(9);
+		pd.id=rs.getInt(8);
 
 		db.closeConnection();
-
+		
 		return pd;
 	}
 	
+	public void getQA(){
+		Database db = new Database();
+
+		String query = " Select p.Question, p.Answer"
+				+ " From  ProductQA p "
+				+ " where p.ProductId =" + this.getId() + ";";
+
+		System.out.println(query);
+
+		ResultSet rs;
+		try {
+			rs = db.select(query);
+			
+			
+			String rev=new String("");
+			
+			while (rs.next()) {
+			
+			this.qa.add(rs.getString(1));
+			this.qa.add(rs.getString(2));
+			
+			
+			}
+			db.closeConnection();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+			
+	}
+	
+	public void getReviewDb(String i) {
+		Database db = new Database();
+
+		String query = " Select cus.Review, cus.Rating"
+				+ " From  CustomerReviews cus "
+				+ " where cus.ProductId =" + i + ";";
+
+		System.out.println(query);
+
+		ResultSet rs;
+		try {
+			rs = db.select(query);
+			double rate=0;
+			
+			String rev=new String("");
+			int id=0;
+			while (rs.next()) {
+			
+			rev+=rs.getString(1)+";";
+			
+			rate+=rs.getInt(2);
+			id++;
+			}
+			db.closeConnection();
+			
+			this.setReview(rev);
+			this.setRating(rate/id);
+			
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+	}
+	
+	public void addReviewDb( String cusId,String rating,String review){
+		Database db = new Database();
+		String query = "Insert into CustomerReviews (ProductId, CustomerId, Rating, Review) values (?,?,?,?)";
+
+		String[] param = { this.getId(), cusId, rating, review  };
+		System.out.println("id "+this.getId());
+
+		db.insert(query, param);
+
+		
+	}
+	
+	public void addQuestionDb( String cusId,String ques){
+		Database db = new Database();
+		String query = "Insert into ProductQA (ProductId, CustomerId, Question) values (?,?,?)";
+
+		String[] param = { this.getId(), cusId, ques};
+
+		db.insert(query, param);
+
+		
+	}
+	private void setRating(double d) {
+		// TODO Auto-generated method stub
+		this.rating=d;
+	}
+
+	private void setReview(String rev) {
+		// TODO Auto-generated method stub
+		this.review+=rev;
+	}
+
 	public void updateQnty(int id, int qty, String operation) {
 
 		Database db = new Database();
